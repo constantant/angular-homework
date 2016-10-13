@@ -1,0 +1,16 @@
+<h1>{{title}}</h1>
+<div class="element">
+    <div class="element-left">
+        <app-village-list [list]="villages" (currentEmitter)="onCurrent($event)"></app-village-list>
+    </div>
+    <div class="element-right">
+        <app-temperatur [current]="current"></app-temperatur>
+        <app-teddy-bear [current]="current"></app-teddy-bear>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="copy-right">
+    <p>
+        © 2015 Hot Weather Widget. All rights reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a>
+    </p>
+</div>
