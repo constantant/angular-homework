@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter} from '@angular/core';
+import Village from '../shared'
 
 @Component({
     selector: 'app-village-list',
@@ -12,7 +13,7 @@ export class VillageListComponent implements OnInit {
     public list;
 
     @Output()
-    public currentEmitter: EventEmitter<any> = new EventEmitter();
+    public currentEmitter: EventEmitter<Village> = new EventEmitter();
 
     public current;
 
