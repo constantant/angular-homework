@@ -1,5 +1,5 @@
-import {Component, ViewEncapsulation, Input} from '@angular/core';
-import Village from './shared'
+import {Component, ViewEncapsulation} from '@angular/core';
+import {Village} from './shared'
 
 @Component({
     selector: 'app-root',
@@ -51,7 +51,7 @@ export class AppComponent {
         }
     ];
 
-    public onCurrent(item){
+    public onCurrent(item) {
         this.current = item;
     }
 }
