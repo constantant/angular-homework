@@ -1,10 +1,15 @@
 <div class="element-bg-img">
-    <img [src]="current.image1" alt="" class="img-responsive">
+    <img [src]="current.images[0]" alt="" class="img-responsive">
 </div>
 <div class="element-left-bottom">
     <div class="ele-strip">
         <ul>
-            <li *ngFor="let item of list"><a href="javascript:;" (click)="setCurrent(item)">{{item.title}}</a></li>
+            <li>
+                <a href="javascript:;" (click)="filter()">All</a>
+            </li>
+            <li *ngFor="let act of activities">
+                <a href="javascript:;" (click)="filter(act[0])">{{act[1]}}</a>
+            </li>
         </ul>
     </div>
     <div class="village">
@@ -12,19 +17,11 @@
         <span class="line"> </span>
         <div class="activity_box">
             <div class="scrollbar" id="style-2">
-                <div class="activity-row" *ngFor="let item of list" (click)="setCurrent(item)">
-                    <div class="activity-desc">
-                        <h5>{{item.title}}</h5>
-                        <h6>Tel: {{item.phone}}</h6>
-                    </div>
-                    <div class="activity-img">
-                        <ul>
-                            <li><img [src]="item.image1" alt=""/></li>
-                            <li><img [src]="item.image2" alt=""/></li>
-                        </ul>
-                    </div>
-                    <div class="clear"></div>
-                </div>
+                <app-village-item
+                        *ngFor="let item of list | villageFilter: currentActivity"
+                        [item]="item"
+                        (click)="setCurrent(item)"
+                ></app-village-item>
             </div>
         </div>
     </div>

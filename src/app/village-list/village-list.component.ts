@@ -1,5 +1,5 @@
 import {Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter} from '@angular/core';
-import {Village} from '../shared'
+import {Village, Activity} from '../shared'
 
 @Component({
     selector: 'app-village-list',
@@ -12,10 +12,19 @@ export class VillageListComponent implements OnInit {
     @Input()
     public list;
 
+    public activities = [
+        [Activity.Horses, Activity[Activity.Horses]],
+        [Activity.Volley, Activity[Activity.Volley]],
+        [Activity.Tennis, Activity[Activity.Tennis]],
+        [Activity.Swimming, Activity[Activity.Swimming]]
+    ];
+
     @Output()
     public currentEmitter: EventEmitter<Village> = new EventEmitter();
 
     public current;
+
+    public currentActivity = null;
 
     constructor() {
     }
@@ -26,7 +35,10 @@ export class VillageListComponent implements OnInit {
 
     public setCurrent(item) {
         this.current = item;
-        this.currentEmitter.emit(item)
+        this.currentEmitter.emit(item);
     }
 
+    public filter(act: number) {
+        this.currentActivity = act;
+    }
 }
