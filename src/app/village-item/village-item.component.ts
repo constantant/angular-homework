@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {Village} from '../shared';
 
 @Component({
@@ -6,15 +6,12 @@ import {Village} from '../shared';
     templateUrl: './village-item.component.html',
     styleUrls: ['./village-item.component.css']
 })
-export class VillageItemComponent implements OnInit {
+export class VillageItemComponent {
 
     @Input()
-    public item: Village;
+    public data: Village;
 
     constructor() {
-    }
 
-    ngOnInit() {
     }
-
 }

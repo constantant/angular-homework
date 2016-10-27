@@ -1,15 +1,15 @@
 <div class="teddy-bear">
     <div class="teddy-text">
-        <h4>{{current.title}}</h4>
+        <h4>{{data?.title}}</h4>
         <span class="w-line"> </span>
-        <img [src]="current.images[1]" alt="" class="img-responsive">
+        <img [src]="data?.images && data?.images[1]" alt="" class="img-responsive">
     </div>
     <div class="teddy-follow">
         <ul>
-            <li class="folw-h"><h3>{{current.followers}}</h3>
+            <li class="folw-h"><h3>{{data?.followers}}</h3>
                 <p>Followers</p>
             </li>
-            <li><h3>{{current.following}}</h3>
+            <li><h3>{{data?.following}}</h3>
                 <p>Following</p>
             </li>
         </ul>

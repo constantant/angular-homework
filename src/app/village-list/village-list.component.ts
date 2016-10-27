@@ -1,5 +1,6 @@
-import {Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter} from '@angular/core';
-import {Village, Activity} from '../shared'
+import {Component, ViewEncapsulation} from '@angular/core';
+import {VillageDataService} from '../village-data.service';
+import {Village} from "../shared/village";
 
 @Component({
     selector: 'app-village-list',
@@ -7,38 +8,26 @@ import {Village, Activity} from '../shared'
     styleUrls: ['./village-list.component.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class VillageListComponent implements OnInit {
+export class VillageListComponent {
 
-    @Input()
-    public list;
+    public current: Village;
 
-    public activities = [
-        [Activity.Horses, Activity[Activity.Horses]],
-        [Activity.Volley, Activity[Activity.Volley]],
-        [Activity.Tennis, Activity[Activity.Tennis]],
-        [Activity.Swimming, Activity[Activity.Swimming]]
-    ];
+    public currentActivity: number;
 
-    @Output()
-    public currentEmitter: EventEmitter<Village> = new EventEmitter();
+    public villages: Village[] = [];
 
-    public current;
+    constructor(public villageData: VillageDataService) {
+        villageData.villages.subscribe((village: Village) => {
+            this.villages.push(village);
+        });
 
-    public currentActivity = null;
+        villageData.current.subscribe((village: Village) => {
+            this.current = village;
+        });
 
-    constructor() {
+        villageData.currentActivity.subscribe((currentActivity: number) => {
+            this.currentActivity = currentActivity;
+        });
     }
 
-    ngOnInit() {
-        this.setCurrent(this.list[0]);
-    }
-
-    public setCurrent(item) {
-        this.current = item;
-        this.currentEmitter.emit(item);
-    }
-
-    public filter(act: number) {
-        this.currentActivity = act;
-    }
 }

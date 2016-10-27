@@ -1,4 +1,6 @@
-import {Component, OnInit, ViewEncapsulation, Input} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
+import {Village} from '../shared';
+import {VillageDataService} from '../village-data.service';
 
 @Component({
     selector: 'app-teddy-bear',
@@ -6,15 +8,14 @@ import {Component, OnInit, ViewEncapsulation, Input} from '@angular/core';
     styleUrls: ['./teddy-bear.component.css'],
     encapsulation: ViewEncapsulation.None
 })
-export class TeddyBearComponent implements OnInit {
+export class TeddyBearComponent {
 
-    @Input()
-    public current;
+    public data: Village;
 
-    constructor() {
-    }
-
-    ngOnInit() {
+    constructor(public villageData: VillageDataService) {
+        villageData.current.subscribe((village: Village) => {
+            this.data = village;
+        });
     }
 
 }
